@@ -1,4 +1,7 @@
 import React from 'react';
+import WrongGuesses from './Wrong';
+import Word from './Word';
+import Message from './Message';
 
 
 class Game extends React.Component {
@@ -44,22 +47,12 @@ class Game extends React.Component {
     }
 
     render(){
-        const has_won = (this.state.correct_guesses.size === (new Set(this.state.word)).size);
-        const is_dead = (this.state.incorrect_guesses.size >= this.state.lives);
-        let status;
-        if (has_won){
-            status = "You win!";
-        }else if (is_dead){
-            status = "You're Dead!";
-        }
-        else{
-            status = "Ok, what's next? You have " + (this.state.lives - this.state.incorrect_guesses.size) +" guesses left!";
-        }
         return (
                 <div className="game">
                 <h1>Hangman!</h1>
-                <h2>{status}</h2>
-                <p className="lead" style={{textDecorationLine: 'line-through'}}>{this.state.incorrect_guesses}</p>
+                <Message word={this.state.word} correct_guesses={this.state.correct_guesses} incorrect_guesses={this.state.incorrect_guesses} lives={this.state.lives}/>
+                <Word word={this.state.word} guesses={this.state.guesses}/>
+                <WrongGuesses incorrect_guesses={this.state.incorrect_guesses}/>
                 <input type="text" onKeyPress={this.handleKeyPress}/>
                 </div>
         );
