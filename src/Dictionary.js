@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function chooseWord(){
     const words = ['munificent','interlude', 'cavalcade',
 		           'promontory', 'moribund', 'pabulum',

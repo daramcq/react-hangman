@@ -60,8 +60,12 @@ class Game extends React.Component {
         if (this.state.status !== 'playing'){
             return;
         }
+        this.updateState(event.key);
+    }
+
+    updateState = (key) => {
         const guesses = this.state.guesses.slice();
-        guesses.push(event.key);
+        guesses.push(key);
 
         let correct_guesses = this.correctGuesses(guesses, this.state.word);
         let incorrect_guesses = this.incorrectGuesses(guesses, this.state.word);
@@ -79,7 +83,6 @@ class Game extends React.Component {
             status: status
         });
     }
-
     render(){
         return (
                 <div className="container">

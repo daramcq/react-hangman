@@ -45,20 +45,6 @@ class Gallows extends React.Component {
               " | /|\\ \n" +
               " | / \\ \n" + 
               " |__";
-        
-        const seventh = "  ____\n"  + 
-              " |  | \n"  + 
-              " |  0 \n"  + 
-              " | /|/ \n" +
-              " | / / \n" + 
-              " |__";
-
-        const eighth = "____\n"  + 
-              " |  | \n"  + 
-              " |  0 \n"  + 
-              " | \\|\\ \n" +
-              " | \\ \\ \n" + 
-              " |__";
 
         const gallows = [first, second, third, fourth, fifth, sixth];
         let index = gallows.length - 1 - lives_left;
