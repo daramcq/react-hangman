@@ -3,11 +3,12 @@ import WrongGuesses from './Wrong';
 import Word from './Word';
 import Message from './Message';
 import Gallows from './Gallows';
-
+import { chooseWord } from './Dictionary';
 class Game extends React.Component {
+
     constructor(props){
-        const word = 'seneschal';
         super(props);
+        const word = chooseWord();
         this.state = {
             word: word,
             guesses: [],
@@ -56,20 +57,26 @@ class Game extends React.Component {
         if (!this.isLetter(event.key)){
             return;
         }
+        if (this.state.status !== 'playing'){
+            return;
+        }
         const guesses = this.state.guesses.slice();
         guesses.push(event.key);
+
+        let correct_guesses = this.correctGuesses(guesses, this.state.word);
+        let incorrect_guesses = this.incorrectGuesses(guesses, this.state.word);
+        let status = this.defineStatus(this.state.word, correct_guesses,
+                                       incorrect_guesses, this.state.lives);
+        let lives_left = this.getLivesLeft(this.state.lives, incorrect_guesses);
+        
         this.setState({
             word: this.state.word,
             guesses: guesses,
             lives: this.state.lives,
-            incorrect_guesses: this.incorrectGuesses(guesses, this.state.word),
-            correct_guesses: this.correctGuesses(guesses, this.state.word),
-            lives_left: this.getLivesLeft(this.state.lives, this.incorrectGuesses(guesses, this.state.word)),
-            status: this.defineStatus(this.state.word, this.correctGuesses(this.state.word, guesses),
-                                      this.incorrectGuesses(guesses, this.state.word),
-                                      this.getLivesLeft(this.state.lives,
-                                                        this.incorrectGuesses(guesses, this.state.word))
-                                     )     
+            incorrect_guesses: incorrect_guesses,
+            correct_guesses: correct_guesses,
+            lives_left: lives_left,
+            status: status
         });
     }
 

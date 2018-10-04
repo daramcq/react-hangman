@@ -62,7 +62,6 @@ class Gallows extends React.Component {
 
         const gallows = [first, second, third, fourth, fifth, sixth];
         let index = gallows.length - 1 - lives_left;
-        console.log(index);
         return gallows[index];
     }
     render() {
