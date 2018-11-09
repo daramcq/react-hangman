@@ -83,17 +83,16 @@ class Game extends React.Component {
             status: status
         });
     }
+    componentDidMount(){
+        document.body.addEventListener('keypress', this.handleKeyPress);
+    }
     render(){
         return (
-                <div className="container">
                 <div className="game">
-                <h1>Hangman!</h1>
                 <Message status={this.state.status} lives_left={this.state.lives_left}/>
                 <Gallows lives_left={this.state.lives_left}/>
                 <Word word={this.state.word} guesses={this.state.guesses}/>
                 <WrongGuesses incorrect_guesses={this.state.incorrect_guesses}/>
-                <input type="text" onKeyPress={this.handleKeyPress}/>
-                </div>
                 </div>
         );
     }
