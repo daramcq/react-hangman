@@ -1,6 +1,9 @@
 # Hangman in React
 Hangman written in React.
 
+# Setup
+Run `./build.sh` to build the app into a container and run `start.sh` to get it running at `localhost:3000`.
+
 ## Working
 Core game functionality, including:
 - A word is chosen randomly
